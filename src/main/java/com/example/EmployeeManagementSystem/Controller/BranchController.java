@@ -2,6 +2,7 @@ package com.example.EmployeeManagementSystem.Controller;
 
 import com.example.EmployeeManagementSystem.Entity.Branch;
 import com.example.EmployeeManagementSystem.Entity.Company;
+import com.example.EmployeeManagementSystem.Model.BranchModel;
 import com.example.EmployeeManagementSystem.Service.BranchService;
 import com.example.EmployeeManagementSystem.Service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class BranchController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCompany(@PathVariable Long id) {
+    public void deleteBranch(@PathVariable Long id) {
         branchService.deleteBranch(id);
     }
 

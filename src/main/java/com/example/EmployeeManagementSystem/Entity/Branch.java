@@ -1,27 +1,35 @@
 package com.example.EmployeeManagementSystem.Entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 public class Branch {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @Column(name = "Branch Name")
     private String branchName;
-    @Column(name = "Company")
-    private String company;
+
     @Column(name = "Branch Code")
     private String branchCode;
 
-    public Branch(Long id,String branchName, String company,String branchCode ) {
+    private Long companyId;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    public Branch(Long id,String branchName,String branchCode,Long companyId ) {
         this.id = id;
         this.branchName = branchName;
-        this.company = company;
         this.branchCode = branchCode;
+        this.companyId = companyId;
     }
 
     public Long getId() {
@@ -38,19 +46,20 @@ public class Branch {
     public void setBranchName(String branchName) {
         this.branchName = branchName;
     }
-    public String getCompany() {
-        return company;
-    }
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
     public String getBranchCode() {
         return branchCode;
     }
 
     public void setBranchCode(String branchCode) {
         this.branchCode = branchCode;
+    }
+
+    public Long getCompanyId() {
+        return companyId;
+    }
+    public void setCompanyId(Long companyId) {
+        this.companyId = companyId;
     }
 
 }

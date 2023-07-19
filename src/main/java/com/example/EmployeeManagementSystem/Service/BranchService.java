@@ -2,6 +2,7 @@ package com.example.EmployeeManagementSystem.Service;
 
 import com.example.EmployeeManagementSystem.Entity.Branch;
 import com.example.EmployeeManagementSystem.Entity.Company;
+import com.example.EmployeeManagementSystem.Model.BranchModel;
 import com.example.EmployeeManagementSystem.Repository.BranchRepository;
 import com.example.EmployeeManagementSystem.Repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,6 @@ public class BranchService {
         if (existingBranch.isPresent()) {
             Branch branch = existingBranch.get();
             branch.setBranchName(updatedBranch.getBranchName());
-            branch.setCompany(updatedBranch.getCompany());
             branch.setBranchCode(updatedBranch.getBranchCode());
             return branchRepository.save(branch);
         }
@@ -45,6 +45,7 @@ public class BranchService {
     public void deleteBranch(Long id) {
         branchRepository.deleteById(id);
     }
+
 }
 
 

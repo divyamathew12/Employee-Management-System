@@ -3,6 +3,8 @@ package com.example.EmployeeManagementSystem.Entity;
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 public class Company {
@@ -14,6 +16,9 @@ public class Company {
     private String companyName;
     @Column(name = "Company Code")
     private String companyCode;
+
+    @OneToMany(mappedBy = "company")
+    private List<Branch> branches;
 
     public Company(Long id,String companyName,String companyCode) {
         this.id = id;
