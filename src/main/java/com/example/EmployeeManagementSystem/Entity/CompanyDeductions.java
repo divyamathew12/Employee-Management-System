@@ -1,28 +1,40 @@
 package com.example.EmployeeManagementSystem.Entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 public class CompanyDeductions {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "Company")
-    private String company;
     @Column(name = "PF")
-    private String providentFund;
+    private double providentFund = 12.0;
     @Column(name = "ESI")
-    private String employeeStateInsurance;
+    private double employeeStateInsurance = 1.57;
 
-    public CompanyDeductions(Long id,String company,String providentFund,String employeeStateInsurance) {
+    @ManyToOne
+    @JoinColumn(name = "salary_id")
+    private EmployeeSalary employeeSalary;
+
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
+    public CompanyDeductions(Long id, double providentFund, double employeeStateInsurance) {
         this.id = id;
-        this.company = company;
         this.providentFund = providentFund;
         this.employeeStateInsurance = employeeStateInsurance;
     }
+
     public Long getId() {
         return id;
     }
@@ -30,26 +42,21 @@ public class CompanyDeductions {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getCompany() {
-        return company;
-    }
 
-    public void setCompany(String company) {
-        this.company = company;
-    }
-    public String getProvidentFund() {
+    public double getProvidentFund() {
         return providentFund;
     }
 
-    public void setProvidentFund(String providentFund) {
+    public void setProvidentFund(double providentFund) {
         this.providentFund = providentFund;
     }
-    public String getEmployeeStateInsurance() {
+
+    public double getEmployeeStateInsurance() {
         return employeeStateInsurance;
     }
 
-    public void setEmployeeStateInsurance(String employeeStateInsurance) {
+    public void setEmployeeStateInsurance(double employeeStateInsurance) {
         this.employeeStateInsurance = employeeStateInsurance;
-    }
 
+    }
 }

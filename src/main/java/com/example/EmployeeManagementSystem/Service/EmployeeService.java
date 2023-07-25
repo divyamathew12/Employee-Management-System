@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -23,10 +24,10 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Optional<Employee> getEmployeeById(Long id) {
-        return employeeRepository.findById(id);
+    public Employee getEmployeeById(Long id) {
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Employee not found with id: "+ id));
     }
-
     public Employee createEmployee (Employee employee) {
         return employeeRepository.save(employee);
     }
@@ -36,9 +37,6 @@ public class EmployeeService {
         if (existingEmployee.isPresent()) {
             Employee employee = existingEmployee.get();
             employee.setEmployeeName(updatedEmployee.getEmployeeName());
-            employee.setBranch(updatedEmployee.getBranch());
-            employee.setDepartment(updatedEmployee.getDepartment());
-            employee.setDesignation(updatedEmployee.getDesignation());
             employee.setMobile(updatedEmployee.getMobile());
             employee.setEmail(updatedEmployee.getEmail());
             employee.setBloodGroup(updatedEmployee.getBloodGroup());

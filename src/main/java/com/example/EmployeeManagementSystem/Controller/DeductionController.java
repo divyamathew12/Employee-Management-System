@@ -19,6 +19,10 @@ public class DeductionController {
         this.deductionService = deductionService;
     }
 
+    @GetMapping("/fixed")
+    public  CompanyDeductions getFixedDeduction(){
+        return deductionService.getFixedDeduction();
+    }
     @GetMapping
     public List<CompanyDeductions> getAllCompanyDeductions() {
         return deductionService.getAllCompanyDeductions();
@@ -28,9 +32,8 @@ public class DeductionController {
     public Optional<CompanyDeductions> getCompanyDeductionById(@PathVariable Long id) {
         return deductionService.getCompanyDeductionById(id);
     }
-
     @PostMapping
-    public CompanyDeductions createCompanyDeduction(@RequestBody CompanyDeductions companyDeductions) {
+    public CompanyDeductions createDeduction(@RequestBody CompanyDeductions companyDeductions) {
         return deductionService.createCompanyDeduction(companyDeductions);
     }
 

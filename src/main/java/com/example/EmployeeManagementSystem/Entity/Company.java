@@ -1,11 +1,13 @@
 package com.example.EmployeeManagementSystem.Entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
+@Data
 @NoArgsConstructor
 public class Company {
     @Id
@@ -19,6 +21,23 @@ public class Company {
 
     @OneToMany(mappedBy = "company")
     private List<Branch> branches;
+
+    @OneToMany(mappedBy = "company")
+    private List<CompanyDeductions> companyDeductions;
+
+    @OneToMany(mappedBy = "company")
+    private List<Department> departments;
+
+    @OneToMany(mappedBy = "company")
+    private List<Designation> designations;
+
+    @OneToMany(mappedBy = "company")
+    private List<Employee> employees;
+
+    @OneToMany(mappedBy = "company")
+    private List<EmployeeSalary> salaries;
+
+
 
     public Company(Long id,String companyName,String companyCode) {
         this.id = id;
@@ -43,5 +62,11 @@ public class Company {
 
     public void setCompanyCode(String companyCode) {
         this.companyCode = companyCode;
+    }
+    public List<Branch> getBranches() {
+        return branches;
+    }
+    public void setBranches(List<Branch> branches) {
+        this.branches = branches;
     }
 }

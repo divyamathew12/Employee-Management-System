@@ -1,7 +1,10 @@
 package com.example.EmployeeManagementSystem.Repository;
 
-import com.example.EmployeeManagementSystem.Entity.Salary;
+import com.example.EmployeeManagementSystem.Entity.EmployeeSalary;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SalaryRepository extends JpaRepository<Salary, Long> {
+import java.util.List;
+
+public interface SalaryRepository extends JpaRepository<EmployeeSalary, Long> {
+    List<EmployeeSalary> findByEmployeeId(Long employeeId);
 }

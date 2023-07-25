@@ -3,6 +3,7 @@ package com.example.EmployeeManagementSystem.Controller;
 import com.example.EmployeeManagementSystem.Entity.Company;
 import com.example.EmployeeManagementSystem.Service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,8 +26,10 @@ public class CompanyController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Company> getCompanyById(@PathVariable Long id) {
-        return companyService.getCompanyById(id);
+    public ResponseEntity<Company> getCompanyById(@PathVariable ("id") Long id) {
+    Optional<Company> company = companyService.getCompanyById(id);
+    return company.map(value -> ResponseEntity.ok().body(value))
+            .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
@@ -43,7 +46,6 @@ public class CompanyController {
     public void deleteCompany(@PathVariable Long id) {
         companyService.deleteCompany(id);
     }
-
 }
 
 

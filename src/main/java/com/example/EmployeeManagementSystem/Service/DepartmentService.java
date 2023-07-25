@@ -35,7 +35,6 @@ public class DepartmentService {
         if (existingDepartment.isPresent()) {
             Department department = existingDepartment.get();
             department.setDepartmentName(updatedDepartment.getDepartmentName());
-            department.setCompany(updatedDepartment.getCompany());
             department.setDepartmentCode(updatedDepartment.getDepartmentCode());
             return departmentRepository.save(department);
         }
