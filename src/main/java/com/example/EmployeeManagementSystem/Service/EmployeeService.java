@@ -28,6 +28,10 @@ public class EmployeeService {
         return employeeRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Employee not found with id: "+ id));
     }
+    public List<Employee> getEmployeeByCompanyId(Long companyId){
+        return  employeeRepository.findByBranch_Company_Id(companyId);
+    }
+
     public Employee createEmployee (Employee employee) {
         return employeeRepository.save(employee);
     }

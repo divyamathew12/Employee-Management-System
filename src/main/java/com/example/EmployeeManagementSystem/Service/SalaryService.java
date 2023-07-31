@@ -85,14 +85,19 @@ public class SalaryService {
         }
         return null;
     }
-    public List<EmployeeSalary> getSalaryByEmployeeId(Long employeeId){
-    return salaryRepository.findByEmployeeId(employeeId);
+    public List<EmployeeSalary> getSalaryByMonthAndYearAndEmployeeId(String month, int year, Long id){
+    return salaryRepository.findByMonthAndYearAndEmployeeId(month, year, id);
 }
-
     public void deleteSalary(Long id) {
         salaryRepository.deleteById(id);
     }
+
+    public List<EmployeeSalary> searchSalaries(String employeeName, String email) {
+        return null;
+    }
+
 }
+
 
 
 

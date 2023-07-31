@@ -20,12 +20,15 @@ public class Employee {
     private String email;
     @Column(name = "Blood Group")
     private String bloodGroup;
+
     @ManyToOne
     @JoinColumn(name = "branch_id")
     private Branch branch;
+
     @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
+
     @ManyToOne
     @JoinColumn(name = "designation_id")
     private Designation designation;
@@ -37,6 +40,10 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "deduction_id")
     private CompanyDeductions companyDeductions;
+
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
     public Employee(Long id, String employeeName,String mobile, String email,String bloodGroup) {
         this.id = id;
@@ -77,6 +84,7 @@ public class Employee {
     public void setBloodGroup(String bloodGroup) {
         this.bloodGroup = bloodGroup;
     }
+
 }
 
 

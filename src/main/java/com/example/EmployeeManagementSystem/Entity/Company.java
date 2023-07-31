@@ -37,8 +37,6 @@ public class Company {
     @OneToMany(mappedBy = "company")
     private List<EmployeeSalary> salaries;
 
-
-
     public Company(Long id,String companyName,String companyCode) {
         this.id = id;
         this.companyName = companyName;

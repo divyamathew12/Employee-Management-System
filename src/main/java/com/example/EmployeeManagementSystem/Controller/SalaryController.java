@@ -39,10 +39,13 @@ public class SalaryController {
     public EmployeeSalary updateSalary(@PathVariable Long id, @RequestBody EmployeeSalary salary) {
         return salaryService.updateSalary(id, salary);
     }
-    @GetMapping("/employee/{employeeId}")
-    public  List<EmployeeSalary> getSalaryByEmployeeId (@PathVariable Long employeeId){
-        return salaryService.getSalaryByEmployeeId(employeeId);
+   @GetMapping("/salary-search/{id}")
+   public  List<EmployeeSalary> getSalaryByMonthAndYearAndEmployeeId(@RequestParam String month,
+                                                                     @RequestParam int year,
+                                                                     @RequestParam Long id){
+        return salaryService.getSalaryByMonthAndYearAndEmployeeId(month,year,id);
     }
+
     @DeleteMapping("/{id}")
     public void deleteSalary(@PathVariable Long id) {
         salaryService.deleteSalary(id);
