@@ -1,5 +1,6 @@
 package com.example.EmployeeManagementSystem.Service;
 import com.example.EmployeeManagementSystem.Entity.CompanyDeductions;
+import com.example.EmployeeManagementSystem.Entity.EmployeeSalary;
 import com.example.EmployeeManagementSystem.Repository.DeductionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ public class DeductionService {
     public List<CompanyDeductions> getAllCompanyDeductions() {
         return deductionRepository.findAll();
     }
+
 
     public Optional<CompanyDeductions> getCompanyDeductionById(Long id) {
         return deductionRepository.findById(id);

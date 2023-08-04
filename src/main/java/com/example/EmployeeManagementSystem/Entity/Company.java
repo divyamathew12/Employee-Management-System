@@ -23,9 +23,6 @@ public class Company {
     private List<Branch> branches;
 
     @OneToMany(mappedBy = "company")
-    private List<CompanyDeductions> companyDeductions;
-
-    @OneToMany(mappedBy = "company")
     private List<Department> departments;
 
     @OneToMany(mappedBy = "company")
@@ -35,7 +32,8 @@ public class Company {
     private List<Employee> employees;
 
     @OneToMany(mappedBy = "company")
-    private List<EmployeeSalary> salaries;
+    private List<CompanyDeductions> companyDeductions;
+
 
     public Company(Long id,String companyName,String companyCode) {
         this.id = id;

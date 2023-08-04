@@ -27,6 +27,8 @@ public class Branch {
 
 
 
+
+
     public Branch(Long id,String branchName,String branchCode, Company company) {
         this.id = id;
         this.branchName = branchName;

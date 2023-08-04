@@ -3,13 +3,11 @@ package com.example.EmployeeManagementSystem.Entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import java.util.List;
 
 @Entity
-@Setter
-@Getter
 @Data
 @NoArgsConstructor
 public class EmployeeSalary {
@@ -17,10 +15,6 @@ public class EmployeeSalary {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "Month")
-    private String month;
-    @Column(name = "Year")
-    private int year;
     @Column(name = "Basic")
     private double basic;
     @Column(name= "DA")
@@ -29,36 +23,23 @@ public class EmployeeSalary {
     private double houseRentAllowance;
     @Column(name = "Other Additions")
     private  double otherAdditions;
-    @Column(name = "Total Salary")
-    private double totalSalary;
-    @Column(name = "Total Deduction")
-    private double totalDeduction;
-    @Column(name = "Net Salary")
-    private double netSalary;
-    @Column(name = "Net Pay")
-    private String netPay;
+    @Column(name = "Gross Pay")
+    private double grossPay;
 
     @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @ManyToOne
-    @JoinColumn(name ="deduction_id")
-    private CompanyDeductions companyDeductions;
+    @OneToMany(mappedBy = "employeeSalary")
+    private List<Payment> payments;
 
-    @ManyToOne
-    @JoinColumn(name = "company_id")
-    private Company company;
-
-    public EmployeeSalary(Long id, String month, int year, double basic, double dearnessAllowance, double houseRentAllowance, double otherAdditions, String deductions, String netPay) {
+    public EmployeeSalary(Long id, double basic, double dearnessAllowance, double houseRentAllowance,double otherAdditions, double grossPay) {
         this.id = id;
-        this.month = month;
-        this.year = year;
         this.basic = basic;
         this.dearnessAllowance = dearnessAllowance;
         this.houseRentAllowance = houseRentAllowance;
         this.otherAdditions = otherAdditions;
-        this.netPay = netPay;
+        this.grossPay = grossPay;
     }
     public Long getId() {
         return id;
@@ -66,20 +47,6 @@ public class EmployeeSalary {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getMonth() {
-        return month;
-    }
-    public void setMonth(String month) {
-        this.month = month;
-    }
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
     }
 
     public double getBasic() {
@@ -104,6 +71,7 @@ public class EmployeeSalary {
     public void setHouseRentAllowance(double houseRentAllowance) {
         this.houseRentAllowance = houseRentAllowance;
     }
+
     public double getOtherAdditions() {
         return otherAdditions;
     }
@@ -112,29 +80,19 @@ public class EmployeeSalary {
         this.otherAdditions = otherAdditions;
     }
 
-    public String getNetPay() {
-        return netPay;
+    public double getGrossPay() {
+        return grossPay;
     }
 
-    public void setNetPay(String netPay) {
-        this.netPay = netPay;
+    public void setGrossPay(double grossPay) {
+        this.grossPay = grossPay;
     }
-    public double getTotalSalary() {
-        return totalSalary;
+
+    public Employee getEmployee() {
+        return employee;
     }
-    public void setTotalSalary(double totalSalary) {
-        this.totalSalary = totalSalary;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
-    public double getTotalDeduction() {
-        return totalDeduction;
-    }
-    public void setTotalDeduction(double totalDeduction) {
-        this.totalDeduction = totalDeduction;
-    }
-    public double getNetSalary() {
-        return netSalary;
-    }
-    public void setNetSalary(double netSalary) {
-        this.netSalary = netSalary;
-    }
+
 }

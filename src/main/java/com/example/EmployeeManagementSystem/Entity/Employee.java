@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -41,9 +44,12 @@ public class Employee {
     @JoinColumn(name = "deduction_id")
     private CompanyDeductions companyDeductions;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+    @OneToOne(mappedBy = "employee")
+    private Payment payment;
+
+    @OneToMany(mappedBy = "employee")
+    private List<EmployeeSalary>employeeSalaries = new ArrayList<>();
+
 
     public Employee(Long id, String employeeName,String mobile, String email,String bloodGroup) {
         this.id = id;

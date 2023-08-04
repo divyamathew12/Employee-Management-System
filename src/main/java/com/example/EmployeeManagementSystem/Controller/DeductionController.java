@@ -1,6 +1,7 @@
 package com.example.EmployeeManagementSystem.Controller;
 
 import com.example.EmployeeManagementSystem.Entity.CompanyDeductions;
+import com.example.EmployeeManagementSystem.Entity.EmployeeSalary;
 import com.example.EmployeeManagementSystem.Service.DeductionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -17,17 +19,15 @@ public class CompanyDeductions {
     @Column(name = "ESI")
     private double employeeStateInsurance = 1.57;
 
-    @ManyToOne
-    @JoinColumn(name = "salary_id")
-    private EmployeeSalary employeeSalary;
+    @OneToMany(mappedBy = "companyDeductions")
+    private List<Payment> payments;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "company_id")
     private Company company;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+    @OneToMany(mappedBy = "companyDeductions")
+    private List<Employee> employees;
 
     public CompanyDeductions(Long id, double providentFund, double employeeStateInsurance) {
         this.id = id;
