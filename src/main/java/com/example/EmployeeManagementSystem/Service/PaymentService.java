@@ -26,7 +26,6 @@ public class PaymentService {
 
     @Autowired
     private DeductionRepository deductionRepository;
-
     @Autowired
     private SalaryService salaryService;
 
