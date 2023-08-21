@@ -1,10 +1,7 @@
 package com.example.EmployeeManagementSystem.Controller;
 
 import com.example.EmployeeManagementSystem.Entity.Branch;
-import com.example.EmployeeManagementSystem.Entity.Company;
-import com.example.EmployeeManagementSystem.Model.BranchModel;
 import com.example.EmployeeManagementSystem.Service.BranchService;
-import com.example.EmployeeManagementSystem.Service.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +13,6 @@ import java.util.Optional;
 public class BranchController {
 
     private final BranchService branchService;
-
     @Autowired
     public BranchController(BranchService branchService) {
         this.branchService = branchService;
@@ -46,6 +42,7 @@ public class BranchController {
     public void deleteBranch(@PathVariable Long id) {
         branchService.deleteBranch(id);
     }
+
 
 }
 
