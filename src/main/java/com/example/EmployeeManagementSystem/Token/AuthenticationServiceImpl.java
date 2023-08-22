@@ -43,3 +43,4 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return JwtAuthenticationResponse.builder().token(jwt).build();
     }
 }
+
