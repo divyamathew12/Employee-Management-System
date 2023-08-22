@@ -1,25 +1,28 @@
 package com.example.EmployeeManagementSystem.Entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Data
 @NoArgsConstructor
 public class Department {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name = "Company")
-    private String company;
     @Column(name = "Department Name")
     private String departmentName;
     @Column(name = "Department Code")
     private String departmentCode;
 
-    public Department(Long id, String company, String departmentName, String departmentCode) {
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    public Department(Long id, String departmentName, String departmentCode) {
         this.id = id;
-        this.company = company;
         this.departmentName = departmentName;
         this.departmentCode = departmentCode;
     }
@@ -30,14 +33,6 @@ public class Department {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCompany() {
-        return company;
-    }
-
-    public void setCompany(String company) {
-        this.company = company;
     }
 
     public String getDepartmentName() {

@@ -35,7 +35,6 @@ public class DesignationService {
         if (existingDesignation.isPresent()) {
             Designation designation = existingDesignation.get();
             designation.setDesignationName(updatedDesignation.getDesignationName());
-            designation.setCompany(updatedDesignation.getCompany());
             designation.setDesignationCode(updatedDesignation.getDesignationCode());
             return designationRepository.save(designation);
         }

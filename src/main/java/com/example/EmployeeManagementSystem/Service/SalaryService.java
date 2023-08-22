@@ -1,11 +1,10 @@
 package com.example.EmployeeManagementSystem.Service;
 
-import com.example.EmployeeManagementSystem.Entity.Branch;
-import com.example.EmployeeManagementSystem.Entity.Department;
-import com.example.EmployeeManagementSystem.Entity.Salary;
-import com.example.EmployeeManagementSystem.Model.SalaryModel;
-import com.example.EmployeeManagementSystem.Repository.BranchRepository;
-import com.example.EmployeeManagementSystem.Repository.DepartmentRepository;
+import com.example.EmployeeManagementSystem.Entity.CompanyDeductions;
+import com.example.EmployeeManagementSystem.Entity.Employee;
+import com.example.EmployeeManagementSystem.Entity.EmployeeSalary;
+import com.example.EmployeeManagementSystem.Entity.Payment;
+import com.example.EmployeeManagementSystem.Repository.DeductionRepository;
 import com.example.EmployeeManagementSystem.Repository.SalaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,32 +13,55 @@ import java.util.List;
 import java.util.Optional;
 @Service
 public class SalaryService {
-
     private final SalaryRepository salaryRepository;
+    private CompanyDeductions companyDeductions;
+
+    private EmployeeService employeeService;
 
     @Autowired
-    public SalaryService (SalaryRepository salaryRepository){
+    public SalaryService(SalaryRepository salaryRepository) {
         this.salaryRepository = salaryRepository;
     }
-    public List<Salary> getAllSalaries() {
+
+    @Autowired
+    private DeductionRepository deductionRepository;
+
+    public List<EmployeeSalary> getAllSalaries() {
         return salaryRepository.findAll();
     }
 
-    public Optional<Salary> getSalariesById(Long id) {
+    public Optional<EmployeeSalary> getSalaryById(Long id) {
         return salaryRepository.findById(id);
     }
 
-    public Salary createSalary (Salary salary) {
+    public List<EmployeeSalary> getByEmployeeId(Long employeeId){return salaryRepository.findByEmployeeId(employeeId); }
+
+    public EmployeeSalary createSalary(EmployeeSalary salary) {
         return salaryRepository.save(salary);
     }
 
-    public Salary updateSalary(Long id, Salary updatedSalary) {
-        Optional<Salary> existingSalary = salaryRepository.findById(id);
+    public EmployeeSalary grossPay(EmployeeSalary employeeSalary) {
+        double basic = employeeSalary.getBasic();
+        double dearnessAllowance = employeeSalary.getDearnessAllowance();
+        double houseRentAllowance = employeeSalary.getHouseRentAllowance();
+        double otherAdditions = employeeSalary.getOtherAdditions();
+
+        double grossPay = basic + dearnessAllowance + houseRentAllowance + otherAdditions;
+
+        employeeSalary.setGrossPay(grossPay);
+
+        return salaryRepository.save(employeeSalary);
+
+    }
+    public EmployeeSalary updateSalary(Long id, EmployeeSalary updatedSalary) {
+        Optional<EmployeeSalary> existingSalary = salaryRepository.findById(id);
         if (existingSalary.isPresent()) {
-            Salary salary = existingSalary.get();
+            EmployeeSalary salary = existingSalary.get();
             salary.setBasic(updatedSalary.getBasic());
             salary.setDearnessAllowance(updatedSalary.getDearnessAllowance());
             salary.setHouseRentAllowance(updatedSalary.getHouseRentAllowance());
+            salary.setGrossPay(updatedSalary.getGrossPay());
+
             return salaryRepository.save(salary);
         }
         return null;
@@ -49,6 +71,7 @@ public class SalaryService {
         salaryRepository.deleteById(id);
     }
 }
+
 
 
 

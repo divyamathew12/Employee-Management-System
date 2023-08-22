@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,17 +21,19 @@ public class Branch {
     @Column(name = "Branch Code")
     private String branchCode;
 
-    private Long companyId;
-
     @ManyToOne
     @JoinColumn(name = "company_id")
     private Company company;
 
-    public Branch(Long id,String branchName,String branchCode,Long companyId ) {
+
+
+
+
+    public Branch(Long id,String branchName,String branchCode, Company company) {
         this.id = id;
         this.branchName = branchName;
         this.branchCode = branchCode;
-        this.companyId = companyId;
+        this.company = company;
     }
 
     public Long getId() {
@@ -55,11 +59,16 @@ public class Branch {
         this.branchCode = branchCode;
     }
 
-    public Long getCompanyId() {
-        return companyId;
+    public Company getCompany() {
+        return company;
     }
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public void setCompany(Company company) {
+        this.company = company;
     }
-
+//    public List<Employee> getEmployees() {
+//        return employees;
+//    }
+//    public void setEmployees(List<Employee> employees) {
+//        this.employees = employees;
+//    }
 }
