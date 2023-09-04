@@ -1,4 +1,4 @@
-package com.example.EmployeeManagementSystem.util;
+package com.example.EmployeeManagementSystem.Token;
 
 import io.jsonwebtoken.Claims;
 
@@ -8,14 +8,14 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.cglib.core.internal.Function;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
+@Service
 public class JwtServiceImpl implements Serializable {
 
     private static final long serialVersionUID = -2550185165626007488L;
@@ -37,8 +37,8 @@ public class JwtServiceImpl implements Serializable {
     }
 
     private Claims getAllClaimsFromToken(String token) {
-       return Jwts.parserBuilder().setSigningKey(("B374A26A71490437AA024E4FADD5B497FDFF1A8EA6FF12F6FB65AF2720B59CCF")
-               .getBytes(StandardCharsets.UTF_8)).build().parseClaimsJws(token).getBody();
+        return Jwts.parserBuilder().setSigningKey(("B374A26A71490437AA024E4FADD5B497FDFF1A8EA6FF12F6FB65AF2720B59CCF")
+                .getBytes(StandardCharsets.UTF_8)).build().parseClaimsJws(token).getBody();
 
     }
     private Boolean isTokenExpired(String token) {
@@ -64,4 +64,5 @@ public class JwtServiceImpl implements Serializable {
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 }
+
 
