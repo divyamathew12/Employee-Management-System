@@ -24,6 +24,10 @@ public class Employee {
     @Column(name = "Blood Group")
     private String bloodGroup;
 
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @ManyToOne
     @JoinColumn(name = "branch_id")
     private Branch branch;
@@ -49,6 +53,9 @@ public class Employee {
 
     @OneToMany(mappedBy = "employee")
     private List<EmployeeSalary>employeeSalaries = new ArrayList<>();
+
+    @OneToMany(mappedBy = "employee")
+    private List<LeaveReport>leaveReports = new ArrayList<>();
 
 
     public Employee(Long id, String employeeName,String mobile, String email,String bloodGroup) {

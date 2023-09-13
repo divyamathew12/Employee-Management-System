@@ -27,6 +27,9 @@ public class User {
     private String email;
     private String password;
 
+    @OneToOne(mappedBy = "user")
+    private Employee employee;
+
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "users_roles",

@@ -25,7 +25,8 @@ public class Branch {
     @JoinColumn(name = "company_id")
     private Company company;
 
-
+    @OneToMany(mappedBy = "branch")
+    private List<LeaveReport> LeaveReports;
 
 
 
