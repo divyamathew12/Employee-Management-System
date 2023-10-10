@@ -1,13 +1,15 @@
 package com.example.EmployeeManagementSystem.Entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class LeaveApplication {
 
@@ -41,5 +43,12 @@ public class LeaveApplication {
     @Column(name = "Action Remarks")
     private String actionRemarks;
 
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
+    @ManyToOne
+    @JoinColumn(name = "branch_id")
+    private Branch branch;
 
 }

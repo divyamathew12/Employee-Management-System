@@ -28,6 +28,9 @@ public class Branch {
     @OneToMany(mappedBy = "branch")
     private List<LeaveReport> LeaveReports;
 
+    @OneToMany(mappedBy = "branch")
+    private List<LeaveApplication>leaveApplications;
+
 
 
     public Branch(Long id,String branchName,String branchCode, Company company) {

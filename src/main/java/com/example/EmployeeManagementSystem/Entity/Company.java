@@ -59,6 +59,7 @@ public class Company {
     public void setCompanyCode(String companyCode) {
         this.companyCode = companyCode;
     }
+
     public List<Branch> getBranches() {
         return branches;
     }

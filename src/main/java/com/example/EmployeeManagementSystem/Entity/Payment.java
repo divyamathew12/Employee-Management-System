@@ -23,7 +23,7 @@ public class Payment {
     @Column(name = "Net Pay")
     private double netPay;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
@@ -34,6 +34,10 @@ public class Payment {
     @ManyToOne
     @JoinColumn(name ="salary_id")
     private EmployeeSalary employeeSalary;
+
+    @ManyToOne
+    @JoinColumn(name = "salary_advance_id")
+    private SalaryAdvance salaryAdvance;
 
     public Payment(Long id, String month, int year, double netPay, double totalPay, double totalDeduction) {
         this.id = id;

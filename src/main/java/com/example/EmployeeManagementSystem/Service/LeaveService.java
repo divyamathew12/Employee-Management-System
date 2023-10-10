@@ -32,16 +32,17 @@ public class LeaveService {
 
     public LeaveApplication updateLeaveApplication(Long id, LeaveApplication leaveApplication) {
         LeaveApplication existingLeaveApplication = leaveRepository.findById(id).orElse(null);
-        if (existingLeaveApplication != null) {
 
-            existingLeaveApplication.setStatus(leaveApplication.getStatus());
-            existingLeaveApplication.setActionDate(leaveApplication.getActionDate());
-            existingLeaveApplication.setActionRemarks(leaveApplication.getActionRemarks());
+      if (leaveApplication != null) {
 
-            return leaveRepository.save(existingLeaveApplication);
-        }
-        return null;
-    }
+       existingLeaveApplication.setStatus(leaveApplication.getStatus());
+       existingLeaveApplication.setActionDate(leaveApplication.getActionDate());
+       existingLeaveApplication.setActionRemarks(leaveApplication.getActionRemarks());
+
+        return leaveRepository.save(leaveApplication);
+      }
+         return null;
+   }
 
     public boolean deleteLeaveApplication(Long id) {
         LeaveApplication existingLeaveApplication = leaveRepository.findById(id).orElse(null);
