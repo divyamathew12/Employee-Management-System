@@ -58,9 +58,6 @@ public class Employee {
     private List<EmployeeSalary>employeeSalaries = new ArrayList<>();
 
     @OneToMany(mappedBy = "employee")
-    private List<LeaveReport>leaveReports = new ArrayList<>();
-
-    @OneToMany(mappedBy = "employee")
     private List<SalaryAdvance> salaryAdvances = new ArrayList<>();
 
     @OneToMany(mappedBy = "employee")

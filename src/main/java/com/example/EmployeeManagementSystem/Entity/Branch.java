@@ -26,9 +26,6 @@ public class Branch {
     private Company company;
 
     @OneToMany(mappedBy = "branch")
-    private List<LeaveReport> LeaveReports;
-
-    @OneToMany(mappedBy = "branch")
     private List<LeaveApplication>leaveApplications;
 
 

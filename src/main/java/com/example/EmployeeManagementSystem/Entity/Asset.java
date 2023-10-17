@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -38,6 +39,9 @@ public class Asset {
     @ManyToOne
     @JoinColumn(name = "asset_type_id")
     private AssetType assetType;
+
+    @OneToMany(mappedBy = "asset")
+    private List<AssetAssign> assetAssign;
 
 }
 
