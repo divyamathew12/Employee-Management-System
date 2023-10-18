@@ -1,15 +1,11 @@
 package com.example.EmployeeManagementSystem.Controller;
 
-import com.example.EmployeeManagementSystem.Entity.Branch;
 import com.example.EmployeeManagementSystem.Entity.Employee;
-import com.example.EmployeeManagementSystem.Service.BranchService;
 import com.example.EmployeeManagementSystem.Service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/employees")
@@ -23,16 +19,19 @@ public class EmployeeController {
     }
 
     @GetMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasRole('ROLE_USER')")
     public Employee getEmployeeById(@PathVariable Long id) {
         return employeeService.getEmployeeById(id);
     }
+
+//    @GetMapping
+//    public List<Employee> getEmployeeByCompanyId(@PathVariable Long companyId){
+//        return employeeService.getEmployeeByCompanyId(companyId);
+//    }
 
     @PostMapping
     public Employee createEmployee(@RequestBody Employee employee) {
@@ -50,3 +49,6 @@ public class EmployeeController {
     }
 
 }
+
+
+//@PreAuthorize("hasRole('ROLE_USER')")

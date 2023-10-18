@@ -29,6 +29,9 @@ public class BranchService {
     }
 
     public Branch createBranch (Branch branch) {
+        branch.setBranchName(branch.getBranchName());
+        branch.setBranchCode(branch.getBranchCode());
+
         return branchRepository.save(branch);
     }
 
