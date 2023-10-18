@@ -1,11 +1,17 @@
 package com.example.EmployeeManagementSystem.Token;
 
+
 import com.example.EmployeeManagementSystem.dto.SignInRequest;
 import com.example.EmployeeManagementSystem.dto.SignUpRequest;
+import org.springframework.stereotype.Service;
+
+
 
 public interface AuthenticationService {
 
-    JwtAuthenticationResponse signUp(SignUpRequest request);
+    JwtAuthenticationResponse signIn(SignInRequest signInRequest);
 
-    JwtAuthenticationResponse signIn(SignInRequest request);
+    JwtAuthenticationResponse signUp(SignUpRequest signUpRequest);
+
+
 }
